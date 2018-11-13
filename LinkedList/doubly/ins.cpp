@@ -75,7 +75,7 @@ void deleteNode(node** head, int pos)
         return;
     }
     moveNode->prev->next = moveNode->next;
-    if(moveNode->next) //Check this condition for the deletion at end
+    if(moveNode->next)      //!Check this condition for the deletion at end
     moveNode->next->prev = moveNode->prev;
     delete(moveNode);
        
