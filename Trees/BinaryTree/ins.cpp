@@ -1,3 +1,5 @@
+//// Binary Tree Insertion and Post Order Transversal 
+
 #include<iostream>
 
 using namespace std;
@@ -61,5 +63,7 @@ int main()
     insertTree(&root, 10);
     insertTree(&root, 12);
     insertTree(&root, 2);
+    insertTree(&root, 15);
+    insertTree(&root, 1);
     postOrderTraversal(root);
 }
