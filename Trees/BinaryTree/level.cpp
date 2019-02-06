@@ -1,7 +1,5 @@
-//Binary Tree PreOrder Recursion and PreOrder Without Recursion
-
 #include<iostream>
-#include<stack>
+#include<queue>
 
 using namespace std;
 
@@ -49,45 +47,37 @@ void insertBinaryTree(binaryTree** root, int data)
     else current->right = newNode;
 }
 
-void preOrderTraversal(binaryTree* root)
+void levelOrderWithoutRecursion(binaryTree* root)
 {
-    if(root==NULL)
-    return;
-    cout<<root->data<<" ";
-    preOrderTraversal(root->left);
-    preOrderTraversal(root->right);
-}
-
-void preOrderWithoutRecursion(binaryTree* root)
-{
-    stack <binaryTree*> preOrder;
+    queue <binaryTree*> levelOrder;
     binaryTree* node = root;
-    preOrder.push(node);
-    while(!preOrder.empty())
+    levelOrder.push(node);
+    while(!levelOrder.empty())
     {
-        node = preOrder.top();
-        preOrder.pop();
+        node = levelOrder.front();
+        levelOrder.pop();
         cout<<node->data<<" ";
-        if(node->right != NULL)
-        {
-            preOrder.push(node->right);
-        }
         if(node->left != NULL)
         {
-            preOrder.push(node->left);
+            levelOrder.push(node->left);
+        }
+        if(node->right != NULL)
+        {
+            levelOrder.push(node->right);
         }
     }
+
 }
+
 
 int main()
 {
     insertBinaryTree(&root, 10);
+    insertBinaryTree(&root, 15);
+    insertBinaryTree(&root, 6);
     insertBinaryTree(&root, 12);
     insertBinaryTree(&root, 2);
-    insertBinaryTree(&root, 15);
-    insertBinaryTree(&root, 1);
-    cout<<"Pre Order Traversal is ";preOrderTraversal(root);
-    cout<<endl;
-    cout<<"Pre Order Without Recursion is ";preOrderWithoutRecursion(root);
-    cout<<endl;
+    insertBinaryTree(&root, 8);
+    insertBinaryTree(&root, 18);
+    levelOrderWithoutRecursion(root);
 }
