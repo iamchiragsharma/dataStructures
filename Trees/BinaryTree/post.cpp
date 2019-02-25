@@ -36,6 +36,52 @@ void insertBinaryTree(binaryTree** root, int value)
                 break;
             else current = current->left;
         }
+struct binaryTree{
+    int data;
+    binaryTree* left;
+    binaryTree* right;
+};
+
+binaryTree* root = NULL;
+
+void insertBinaryTree(binaryTree** root, int value)
+{
+    binaryTree* newNode = new binaryTree;
+    newNode->data = value;
+    newNode->left = NULL;
+    newNode->right = NULL;
+
+    if(*root == NULL)
+    {
+        *root = newNode;
+        return;
+    }
+
+    binaryTree* current = *root;
+
+    while(1)
+    {
+        if(value < current->data)
+        {
+            if(current->left == NULL)
+                break;
+            else current = current->left;
+        }
+
+        else
+        {
+            if(current->right == NULL)
+                break;
+            else current = current->right;
+        }
+
+    }
+
+    if(value < current->data)
+        current->left = newNode;        
+    else current -> right = newNode;
+
+}
 
         else
         {
@@ -66,7 +112,7 @@ void postOrderWithoutRecursion(binaryTree* root)
 {
     stack <binaryTree*> postOrder;
     binaryTree* node = root;
-    binaryTree* printNode;
+    binaryTree* display;
     postOrder.push(node);
     while(!postOrder.empty())
     {
@@ -82,8 +128,12 @@ void postOrderWithoutRecursion(binaryTree* root)
             postOrder.push(node->left);
         }
 
-        
-        
+        if(node->right == NULL && node->left == NULL)
+        {
+            display = postOrder.top();
+            postOrder.pop();
+            cout<<display->data<<" ";
+        }  
     }
 }
 
